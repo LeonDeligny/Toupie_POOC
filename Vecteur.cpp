@@ -4,12 +4,13 @@
 #include <cmath>
 using namespace std;
 
-    void Vecteur::augmente(double const& valeur) { vecteur.push_back(valeur); }
+    void Vecteur::augmente(double const& valeur) { vecteur.push_back(valeur); } //augmente la taille d'un vecteur
+    
     void Vecteur::set_coord(size_t const& position, double const& valeur) {
         if ( vecteur.size() > position ) {
-            vecteur[position] = valeur;
+            vecteur[position] = valeur; //Ajoute une valeur si le vecteur est assez grand
         } else {
-            size_t m(position - vecteur.size() + 1);
+            size_t m(position - vecteur.size() + 1); //crée une case supplémentaire sinon
             for (size_t i(0); i < m ; ++i) {
                 vecteur.push_back(0);
             }
@@ -22,7 +23,8 @@ using namespace std;
         }
     }
     vector<double> Vecteur::get_vecteur() const { return vecteur; }
-    bool Vecteur::compare(Vecteur const &v) {
+   
+    bool Vecteur::compare(Vecteur const &v) { //indique si les vecteurs sont identiques
         bool a(true);
         if ( v.get_vecteur().size() == vecteur.size() ) {
             for ( size_t i(0); i < vecteur.size(); ++i ) {
@@ -35,12 +37,15 @@ using namespace std;
         }
         return a;
     }
-    Vecteur Vecteur::addition(Vecteur autre) const {
+    
+    Vecteur Vecteur::addition(const Vecteur& autre) const { //retourne un vecteur qui contient la somme des coordonnées
         Vecteur v_;
-        if( vecteur.size() != autre.get_vecteur().size()) {
+        if( vecteur.size() != autre.get_vecteur().size()) { //du vecteur de l'appel et de celui passé par référence constante
             cout << "Problème de dimension avec méthode addition ";
+        
         } else if( vecteur.size() == 0 or autre.get_vecteur().size() == 0) {
             cout << "Utilisation de la méthode soustraction avec un vecteur vide ";
+        
         } else {
             for ( size_t i(0); i < vecteur.size(); ++i) {
                 v_.set_coord(i, autre.get_vecteur()[i] + vecteur[i]);
@@ -48,11 +53,12 @@ using namespace std;
         }
         return v_;
     }
-    Vecteur Vecteur::oppose() const {
+    Vecteur Vecteur::oppose() const { //inverse les signes des valeurs d'un vecteur
         Vecteur v_;
+        v_.set_coord(0, 0);
         if ( vecteur.size() == 0 ) {
             cout << "Utilisation de la méthode oppose avec un vecteur vide " << endl;
-            v_.get_vecteur()[0] = 0;
+         
         } else {
             for( size_t i(0); i < vecteur.size(); ++i ) {
                 v_.get_vecteur()[i] = -vecteur[i];
@@ -60,7 +66,8 @@ using namespace std;
         }
         return v_;
     }
-    Vecteur Vecteur::soustraction(Vecteur autre) const {
+    
+    Vecteur Vecteur::soustraction(const Vecteur& autre) const {
         Vecteur v_;
         if( vecteur.size() != autre.get_vecteur().size() and vecteur.size() != 0) {
             cout << "Problème de dimension avec méthode soustraction ";
@@ -73,7 +80,7 @@ using namespace std;
         }
         return v_;
     }
-    Vecteur Vecteur::mult(double autre) const {
+    Vecteur Vecteur::mult(const double& autre) const {
         Vecteur v_;
         if ( vecteur.size() == 0 ) {
             cout << "Utilisation de la méthode mult avec un vecteur vide ";
@@ -85,7 +92,7 @@ using namespace std;
         }
         return v_;
     }
-    double Vecteur::prod_scal(Vecteur autre) const {
+    double Vecteur::prod_scal(const Vecteur& autre) const {
         double a(0);
         if ( vecteur.size() == 0 or autre.get_vecteur().size() == 0) {
             cout << "Utilisation de la méthode prod_scal avec un vecteur vide " << endl;
@@ -100,7 +107,7 @@ using namespace std;
         }
         return a;
     }
-    double Vecteur::norme() const {
+    double Vecteur::normeuclide() const {
         double a(0);
         if ( vecteur.size() == 0) {
             cout << "Utilisation de la méthode norme avec un vecteur vide " << endl;
