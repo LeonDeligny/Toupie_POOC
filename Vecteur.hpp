@@ -10,22 +10,25 @@
 #define Vecteur_hpp
 
 #include <stdio.h>
-#include <iostream>
 #include <vector>
+#include <initializer_list>
 class Vecteur {
 private:
     std::vector<double> vecteur;
 public:
+    Vecteur(std::vector<double> const& R = {0}): vecteur(R) {}
     void augmente(double const& valeur);
-    void set_coord(int const& position, double const& valeur);
+    void set_coord(size_t const& position, double const& valeur);
     void affiche();
-    std::vector<double> get_vecteur() const;
     bool compare(Vecteur const &v) ;
-    Vecteur addition(Vecteur autre) const;
-    Vecteur oppose() const;
-    Vecteur soustraction(Vecteur autre) const;
-    Vecteur mult(double autre) const;
-    double prod_scal(Vecteur autre) const;
+    
+    Vecteur addition(Vecteur const& autre) ;
+    Vecteur oppose();
+    Vecteur soustraction(Vecteur const& autre);
+    Vecteur mult(double const& autre);
+    Vecteur prod_vectoriel(Vecteur const& autre );
+    Vecteur unitaire();
+    double prod_scal(Vecteur const& autre) const;
     double norme() const;
     double norme2() const;
 
