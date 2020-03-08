@@ -10,7 +10,7 @@ using namespace std;
     void probleme_vide(string nom_methode) {
         cout << "Utilisation d'un vecteur vide avec méthode : " << nom_methode << " : dans fichier : Vecteur.cpp " << endl;
     }
-    bool Vecteur::compare(Vecteur const &v) {
+    bool Vecteur::compare(Vecteur const &v)const  {
         if ( v.vecteur.size() == vecteur.size() ) {
             for ( size_t i(0); i < vecteur.size(); ++i ) {
                 if ( v.vecteur[i] != vecteur[i] ) {
@@ -34,13 +34,13 @@ using namespace std;
             vecteur[position] = valeur;
         }
     }
-    void Vecteur::affiche() {
+    void Vecteur::affiche() const {
         for (size_t i(0); i < vecteur.size() ; ++i ) {
             cout << vecteur[i] << " ";
         }
     }    
 
-    Vecteur Vecteur::addition(Vecteur const& autre) {
+    Vecteur Vecteur::addition(Vecteur const& autre) const {
         Vecteur v_;
         if( vecteur.size() != autre.vecteur.size()) {
             probleme_dimension("addition");
@@ -53,7 +53,7 @@ using namespace std;
         }
         return v_;
     }
-    Vecteur Vecteur::oppose() {
+    Vecteur Vecteur::oppose() const {
        Vecteur v_;
         if ( vecteur.size() == 0 ) {
             probleme_vide("oppose");
@@ -63,7 +63,7 @@ using namespace std;
         }
         return v_;
     }
-    Vecteur Vecteur::soustraction(Vecteur const& autre) {
+    Vecteur Vecteur::soustraction(Vecteur const& autre) const {
         Vecteur v_;
         if( vecteur.size() != autre.vecteur.size() and vecteur.size() != 0) {
             probleme_dimension("soustration");
@@ -134,7 +134,7 @@ using namespace std;
         }
         return *this;
     }
-    Vecteur Vecteur::prod_vectoriel(Vecteur const& autre ) {
+    Vecteur Vecteur::prod_vectoriel(Vecteur const& autre )const {
         Vecteur v_;
         if ( autre.vecteur.size() == 3 and vecteur.size() == 3 ) {
             v_.vecteur[0] = vecteur[1] * autre.vecteur[2] - vecteur[2] * autre.vecteur[1];

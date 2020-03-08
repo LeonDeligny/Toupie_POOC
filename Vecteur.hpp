@@ -19,14 +19,14 @@ public:
     Vecteur(std::vector<double> const& R = {0}): vecteur(R) {}
     void augmente(double const& valeur);
     void set_coord(size_t const& position, double const& valeur);
-    void affiche();
-    bool compare(Vecteur const &v) ;
+    void affiche() const ;
+    bool compare(Vecteur const &v)const ;
     
-    Vecteur addition(Vecteur const& autre) ;
-    Vecteur oppose();
-    Vecteur soustraction(Vecteur const& autre);
-    Vecteur mult(double const& autre);
-    Vecteur prod_vectoriel(Vecteur const& autre );
+    Vecteur addition(Vecteur const& autre) const ;
+    Vecteur oppose() const ;
+    Vecteur soustraction(Vecteur const& autre) const ;
+    Vecteur mult(double const& autre) ;
+    Vecteur prod_vectoriel(Vecteur const& autre ) const ;
     Vecteur unitaire();
     double prod_scal(Vecteur const& autre) const;
     double norme() const;
