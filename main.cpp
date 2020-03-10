@@ -1,22 +1,35 @@
 #include <iostream>
-#include "Vecteur.hpp"
+#include "Vecteurh.h"
 using namespace std;
 
 int main() {
-    
-    Vecteur vect1;
-    Vecteur vect2;
-    Vecteur vect3;
-    vect1.augmente(1.0);
-    vect1.augmente(2.0);
-    vect1.augmente(-0.1);
-    vect2.augmente(2.6);
-    vect2.augmente(2.5);
-    vect2.augmente(-4.1);
-    
-    vect3 = vect1.addition(vect2);
-    vect3.affiche();
-    
+
+    try {
+        Vecteur vect1;
+        Vecteur vect2;
+        Vecteur vect3;
+        vect1.augmente(1.0);
+        vect1.augmente(2.0);
+        vect1.augmente(-0.1);
+        vect2.augmente(2.6);
+        vect2.augmente(2.5);
+        vect2.augmente(-4.1);
+
+        vect3 = vect1.addition(vect2);
+        vect3.affiche();
+
+        Vecteur v_;
+        v_.augmente(6);
+        vect1.addition(v_); //Ca ne marche pas :)
+
+        vect3.affiche(); //n'est pas affiché :)
+        
+    }
+    catch(string& erreur){
+        cout<<endl;
+        cerr<<erreur<<endl;
+    }
+
     /*
     (1.0, 2.0, -0.1) + (2.6, 3.5, 4.1) = (3.6, 5.5, 4.0)
     l'addition du vecteur nul de même dimension (c.-à-d. (0, 0, 0) pas le vecteur de dimension nulle !) ne fait rien (1.0, 2.0, -0.1) - (2.6, 3.5, 4.1) = (-1.6, -1.5, -4.2)
@@ -30,3 +43,4 @@ int main() {
      */
     return 0;
 }
+
