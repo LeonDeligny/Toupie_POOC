@@ -18,3 +18,13 @@ quels droits d'accès ?
 [Question P1.2] 
 Quel choix avez vous fait pour les opérations entre vecteurs de dimensions différentes ?
 J'ai choisi d'envoyer un message d'erreur en disant que l'on ne pouvait additionner deux vecteurs de dimensions différentes. Il est inconcevable en mathématiques d'additionner	deux vecteurs aux dimensions différentes. 
+
+[Question P4.1] Avez-vous ajouté un constructeur de copie ? Pourquoi (justifiez votre choix) ?
+
+[Question P4.2] Si l'on souhaitait ajouter un constructeur par coordonnées sphériques (deux angles et une longueur) pour les vecteurs de dimension 3,
+a] que cela impliquerait-il au niveau des attributs de la classe ?
+b] quelle serait la difficulté majeure (voire l'impossibilité) de sa réalisation en C++ ? (C'est d'ailleurs pour cela qu'on ne vous demande pas de faire un tel constructeur !)
+
+
+[Question P4.3] Quels opérateurs avez vous introduits ?
+Opérateurs << et ==
