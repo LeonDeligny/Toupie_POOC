@@ -15,19 +15,15 @@ int main() {
         vect2.augmente(2.5);
         vect2.augmente(-4.1);
 
-        vect3 = vect1.addition(vect2);
-        vect3.affiche();
+        vect3 = vect1 + vect2;
+        cout<<vect3<<endl;
 
-        Vecteur v_;
-        v_.augmente(6);
-        vect1.addition(v_); //Ca ne marche pas :)
 
-        vect3.affiche(); //n'est pas affiché :)
         
     }
     catch(string& erreur){
         cout<<endl;
-        cerr<<erreur<<endl;
+        cerr<<"Erreur : "<<erreur<<" impossible."<<endl;
     }
 
     /*
