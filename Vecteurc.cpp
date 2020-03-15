@@ -1,7 +1,6 @@
 #include "Vecteurh.h"
-#include <iostream>
 #include <cmath>
-#include <vector>
+#include <iomanip>
 using namespace std;
 
 vector<double> Vecteur::get_vecteur() const { return vecteur; }
@@ -25,51 +24,27 @@ void Vecteur::set_coord(size_t const &position, double const &valeur) {
     if (vecteur.size() > position) {
         vecteur[position] = valeur;
     } else {
-        size_t m(position - vecteur.size() + 1);
-        for (size_t i(0); i < m; ++i) {
+        size_t m(position - vecteur.size());
+        for (size_t i(0); i <= m; ++i) {
             vecteur.push_back(0);
         }
         vecteur[position] = valeur;
     }
 }
 
-const Vecteur Vecteur::operator+(Vecteur const &autre) const {
-    Vecteur v_;
-    if (vecteur.size() != autre.vecteur.size()) {
-        throw"tableaux de tailles différentes, addition"s;
-    } else if (vecteur.empty() or autre.vecteur.empty()) {
-        throw"tableau vide, addition"s;
-    } else {
-        for (size_t i(0); i < vecteur.size(); ++i) {
-            v_.set_coord(i, autre.vecteur[i] + vecteur[i]);
-        }
-    }
-    return v_;
+Vecteur& operator-(Vecteur& v_) {
+    return v_ *= (-1);
 }
 
-const Vecteur Vecteur::operator-() const {
-    Vecteur v_;
-    if (vecteur.empty()) {
-        throw"tableau vide, inversion des signes"s;
-    }
-    for (size_t i(0); i < vecteur.size(); ++i) {
-        v_.set_coord(i, -vecteur[i]);
-    }
-    return v_;
-}
-
-const Vecteur Vecteur::operator-(Vecteur const &autre) const {
-    Vecteur v_;
+Vecteur& Vecteur::operator-=(Vecteur const &autre) {
     if (vecteur.size() != autre.vecteur.size() and !vecteur.empty()) {
-        throw"tableaux de tailles différentes, soustraction";
+        throw "tableaux de tailles différentes, soustraction";
     } else if (vecteur.empty() or autre.vecteur.empty()) {
-        throw"tableau vide, soustraction"s;
+        throw "tableau vide, soustraction"s;
     } else {
-        for (size_t i(0); i < vecteur.size(); ++i) {
-            v_.set_coord(i, vecteur[i] - autre.vecteur[i]);
-        }
+        Vecteur autre1(autre);
+        return *this += -autre1;
     }
-    return v_;
 }
 
 double Vecteur::operator*(Vecteur const &autre) const {
@@ -112,17 +87,50 @@ ostream& operator<<(ostream& sortie, Vecteur const& v) {
     return v.affiche(sortie);
 }
 
+const Vecteur operator-(Vecteur a, const Vecteur &b) {
+    return a-=b;
+}
+
+const Vecteur operator+(Vecteur a, const Vecteur &b) {
+    return a+=b;
+}
+
+const Vecteur operator*(Vecteur a, const double &d) {
+    return a*=d;
+}
+
+const Vecteur operator*(double d, const Vecteur &a) {
+    return Vecteur( a ) *=d;
+}
+
 ostream& Vecteur::affiche(ostream& sortie) const {
+    sortie << "(";
+    setprecision(5);
+    sortie.setf(ios::showpoint);
     for (auto const& i: vecteur) {
        sortie << i << " ";
     }
+    sortie << ")";
     return sortie;
 }
 
-Vecteur& Vecteur::operator*=(double lambda) {
+Vecteur& Vecteur::operator*=(const double& lambda) {
     for(auto& el : vecteur){
         el *= lambda;
     }
     return *this;
 }
+
+Vecteur &Vecteur::operator+=(Vecteur const & autre) {
+        if (vecteur.size() != autre.vecteur.size()) {
+            throw"tableaux de tailles différentes, addition"s;
+        } else if (vecteur.empty() or autre.vecteur.empty()) {
+            throw"tableau vide, addition"s;
+        } else {
+            for (size_t i(0); i < vecteur.size(); ++i) {
+                vecteur[i]+=autre.vecteur[i];
+            }
+        }
+        return *this;
+    }
 

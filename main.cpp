@@ -1,5 +1,6 @@
-#include <iostream>
 #include "Vecteurh.h"
+#include "Vecteurdim3h.h"
+#include "Matrice33h.h"
 using namespace std;
 
 int main() {
@@ -15,8 +16,12 @@ int main() {
         vect2.augmente(2.5);
         vect2.augmente(-4.1);
 
-        vect3 = vect1 + vect2;
-        cout<<vect3<<endl;
+        cout<< vect2<<endl;
+        Matrice33 test(1, 2, 3, 4, 5, 6, 7, 8, 9);
+
+        cout << test * vect2;
+
+
 
 
         
