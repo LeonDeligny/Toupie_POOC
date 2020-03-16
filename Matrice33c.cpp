@@ -18,25 +18,25 @@ Matrice33 Matrice33::transp(){
 }
 
 double Matrice33::det() const{
-    return (matrice[0][0] * ( matrice[1][1] * matrice[2][2] - matrice[1][2] * matrice[2][1] )
-         - (matrice[0][1] * ( matrice[1][0] * matrice[2][2] - matrice[1][2] * matrice[2][0]))
-         + (matrice[0][2] * ( matrice[1][0] * matrice[2][1] - matrice[1][1] * matrice[2][0])));
+    return matrice[0][0] * (matrice[1][1] * matrice[2][2] - matrice[1][2] * matrice[2][1])
+         - matrice[0][1] * (matrice[1][0] * matrice[2][2] - matrice[1][2] * matrice[2][0])
+         + matrice[0][2] * (matrice[1][0] * matrice[2][1] - matrice[1][1] * matrice[2][0]);
 }
 
 Matrice33 Matrice33::inv() const {
     double const a(Matrice33::det());
-    if (a<1e-5){return Matrice33 (0,0,0,0,0,0,0,0,0);}
-    Matrice33 inv((matrice[1][1] * matrice[2][2] -  matrice[1][2] * matrice[2][1]),
-            (matrice[0][2] * matrice[2][1] -  matrice[0][1] * matrice[2][2]),
-            (matrice[0][1] * matrice[1][2] -  matrice[0][2] * matrice[1][1]),
+    if (abs(a)<1e-5){return Matrice33 (0,0,0);}
+    Matrice33 inv(matrice[1][1] * matrice[2][2] - matrice[1][2] * matrice[2][1],
+                  matrice[0][2] * matrice[2][1] - matrice[0][1] * matrice[2][2],
+                  matrice[0][1] * matrice[1][2] - matrice[0][2] * matrice[1][1],
 
-            (matrice[1][2] * matrice[2][0] -  matrice[1][0] * matrice[2][2]),
-            (matrice[0][0] * matrice[2][2] -  matrice[0][2] * matrice[2][0]),
-            (matrice[0][2] * matrice[1][0] - matrice[0][0] * matrice[1][2] ),
+                  matrice[1][2] * matrice[2][0] - matrice[1][0] * matrice[2][2],
+                  matrice[0][0] * matrice[2][2] - matrice[0][2] * matrice[2][0],
+                  matrice[0][2] * matrice[1][0] - matrice[0][0] * matrice[1][2],
 
-            (matrice[1][0] * matrice[2][1] -  matrice[1][1] * matrice[2][0]),
-             matrice[0][1] * matrice[2][0] -  matrice[0][0] * matrice[2][1],
-            (matrice[0][0] * matrice[1][1] -  matrice[0][1] * matrice[1][0]));
+                  matrice[1][0] * matrice[2][1] - matrice[1][1] * matrice[2][0],
+                  matrice[0][1] * matrice[2][0] - matrice[0][0] * matrice[2][1],
+                  matrice[0][0] * matrice[1][1] - matrice[0][1] * matrice[1][0]);
     return 1/a * inv;
 }
 
@@ -70,8 +70,8 @@ Matrice33::Matrice33(double a, double b, double c, double d, double e, double f,
 }
 
 Matrice33 &Matrice33::operator+=(const Matrice33 &add) {
-    for(size_t i(0); i<3; ++i){
-        for(size_t j(0); j<3; ++j){
+    for(size_t i(0); i<matrice.size(); ++i){
+        for(size_t j(0); j<matrice[i].size(); ++j){
             matrice[i][j]+=add.matrice[i][j];
         }
     }
@@ -79,21 +79,21 @@ Matrice33 &Matrice33::operator+=(const Matrice33 &add) {
 }
 
 Matrice33 &Matrice33::operator-=(const Matrice33 &sub) {
-    for(size_t i(0); i<3; ++i){
-        for(size_t j(0); j<3; ++j){
-            matrice[i][j]-=sub.matrice[i][j];
-        }
-    }
-    return *this;
+    for(size_t i(0); i<matrice.size(); ++i) {
+        for (size_t j(0); j < matrice[i].size(); ++j) {
+            matrice[i][j] -= sub.matrice[i][j];
+        } //J'aurais bien écrit return *this += (-1) * sub;
+    } //Mais la multiplication par un scalaire aurait créée une
+    return *this; //copie inutile
 }
 
 Matrice33& Matrice33::operator*=(const Matrice33 & prod) {
-    for (size_t i(0); i < 3; ++i) {
-        for (size_t j(0); j < 3; ++j) {
+    for (auto & i : matrice) {
+        for (size_t j(0); j < i.size(); ++j) {
             for (size_t k(0); k < 3; ++k) {
-                double a = matrice[i][j];
-                matrice[i][j]=0;
-                matrice[i][j] = a + matrice[i][k] * prod.matrice[k][j];
+                double a = i[j];
+                i[j]=0;
+                i[j] = a + i[k] * prod.matrice[k][j];
             }
         }
     }
@@ -101,28 +101,35 @@ Matrice33& Matrice33::operator*=(const Matrice33 & prod) {
 }
 
 Matrice33 &Matrice33::operator*=(const double &d) {
-    for(size_t i(0); i<3; ++i){
-        for(size_t j(0); j<3; ++j){
-            matrice[i][j]*=d;
+    for(auto & i : matrice){
+        for(size_t j(0); j<i.size(); ++j){
+            i[j]*=d;
         }
     }
     return *this;
 }
 
 const Vecteur Matrice33::operator*(const Vecteur &droit) {
-    if(droit.get_vecteur().size() != 3){
+    if(droit.get_vecteur().size() != matrice[0].size()){
         throw"multiplication matrice-vecteur"s;
     }
     Vecteur v_;
-    for(short int i(0); i<3; ++i){
+    for(size_t i(0); i<matrice.size(); ++i){
         double a(0);
         v_.augmente(0);
-        for(size_t j(0); j<3; ++j){
+        for(size_t j(0); j<droit.get_vecteur().size(); ++j){
             a += matrice[i][j] * droit.get_vecteur()[j];
         }
         v_.set_coord(i, a);
     }
     return v_;
+}
+
+Matrice33::Matrice33() {
+    matrice = {{1, 0, 0},
+               {0, 1, 0},
+               {0, 0, 1}};
+    {}
 }
 
 ostream& operator<<(ostream& sortie, Matrice33 const& v) {

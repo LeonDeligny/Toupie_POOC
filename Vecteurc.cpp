@@ -42,9 +42,11 @@ Vecteur& Vecteur::operator-=(Vecteur const &autre) {
     } else if (vecteur.empty() or autre.vecteur.empty()) {
         throw "tableau vide, soustraction"s;
     } else {
-        Vecteur autre1(autre);
-        return *this += -autre1;
+        for (size_t i(0); i < vecteur.size(); ++i) {
+            vecteur[i] -= autre.vecteur[i];
+        }
     }
+    return *this;
 }
 
 double Vecteur::operator*(Vecteur const &autre) const {

@@ -1,19 +1,31 @@
-#include <iostream>
-#include "Vecteur.hpp"
-#include "matrice33.hpp"
+#include "Vecteurh.h"
+#include "Vecteurdim3h.h"
+#include "Matrice33h.h"
 using namespace std;
 
 int main() {
 
     try {
-        Matrice33 m({{1, 0, 0}, {1, 0, 0}, {1 ,0, 0}});
-        
-        cout << m.inv();
+        Vecteur vect1;
+        Vecteur vect2;
+        Vecteur vect3;
+        vect1.augmente(1.0);
+        vect1.augmente(2.0);
+        vect1.augmente(-0.1);
+        vect2.augmente(2.6);
+        vect2.augmente(2.5);
+        vect2.augmente(-4.1);
+
+        Matrice33 test(1, 2, 3);
+        cout<<test;
+        Matrice33 id;
+        cout<<test - id;
+
         
     }
     catch(string& erreur){
         cout<<endl;
-        cerr<<erreur<<endl;
+        cerr<<"Erreur : "<<erreur<<" impossible."<<endl;
     }
 
     /*
@@ -29,3 +41,4 @@ int main() {
      */
     return 0;
 }
+

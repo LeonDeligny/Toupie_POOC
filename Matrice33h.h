@@ -12,7 +12,9 @@ private:
     std::vector<ligne3> matrice;
 public:
     explicit Matrice33(std::vector<ligne3> R) : matrice(std::move(R)) { }
-    Matrice33(double a=1.0, double b=0.0, double c=0.0, double d=0.0, double e=1.0, double f=0.0, double g=0.0, double h=0.0, double i=1.0);
+    Matrice33(double a, double b, double c, double d, double e, double f, double g, double h, double i);
+    Matrice33(); //matrice identitée
+    Matrice33(double a, double e, double i):Matrice33(a, 0, 0, 0, e, 0, 0, 0, i) { } //matrice diagonale;
     Matrice33 transp();
     double det() const;
     Matrice33 inv() const;
