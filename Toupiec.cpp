@@ -8,5 +8,7 @@ Vecteur Toupie::f(const Vecteur &P, const Vecteur &P_prime) {
 }
 
 std::ostream &Toupie::affiche(std::ostream &) const {
+    cout << //? << "# parametres";
+         cout << //? << "#vitesse";
 
 }

@@ -1,6 +1,7 @@
 #include "Vecteurh.h"
 #include "Vecteurdim3h.h"
 #include "Matrice33h.h"
+#include "Integrateur.h"
 using namespace std;
 
 int main() {
