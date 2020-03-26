@@ -6,7 +6,7 @@
 //  Copyright © 2020 Léon Deligny. All rights reserved.
 //
 
-#include "ConeSimple.hpp"
+#include "ConeSimple.h"
 #include <iostream>
 using namespace std;
 std::ostream& ConeSimple::affiche(std::ostream& sortie) {

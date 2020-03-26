@@ -13,12 +13,12 @@
 #include "SupportADessin.hpp"
 #include <iostream>
 class Dessinable {
-private:
-    SupportADessin* s;
+protected:
+    SupportADessin* support;
 public:
     virtual void dessine() = 0;
     std::ostream& affiche(std::ostream& sortie);
-    Dessinable(SupportADessin* s1) : s(s1) {}
+    Dessinable(SupportADessin* s1) : support(s1) {}
 };
 
 #endif /* Dessinable_hpp */

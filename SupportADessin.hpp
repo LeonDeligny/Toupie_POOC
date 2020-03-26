@@ -10,12 +10,14 @@
 #define SupportADessin_hpp
 
 #include <stdio.h>
-#include "ConeSimple.hpp"
+#include "ConeSimple.h"
+#include "Contenu.hpp"
+
 class SupportADessin {
-    public:
-    virtual ~SupportADessin() {}
+public:
+    virtual ~SupportADessin() = default;
     // on supporsera ici que les supports ne sont ni copiés ni déplacés
-    virtual void dessine(ConeSimple const&) = 0;
+    virtual void dessine(Contenu const& a_dessiner) = 0;
     // ... autres choses que vous voudriez dessiner...
 };
 

@@ -1,28 +1,37 @@
-#include <utility>
-#include <cmath>
+//
+//  ConeSimple.hpp
+//  POO
+//
+//  Created by Léon Deligny on 19/03/2020.
+//  Copyright © 2020 Léon Deligny. All rights reserved.
+//
+
+#ifndef ConeSimple_hpp
+#define ConeSimple_hpp
 
 #include "Toupieh.h"
-
-
-class ConeSimple : public Toupie{
+#include <utility>
+#include <cmath>
+#include <stdio.h>
+class ConeSimple : public Toupie {
 private:
     const double masse_volumique_;
     const double hauteur_;
     const double rayon_;
-    const double m;
     const double moment_dinertie1;
     const double moment_dinertie3;
     const double centre_de_masse;
 
 public:
-    ConeSimple(Vecteur cond_ini, Vecteur deri_cond_ini, const double mv,
+    ConeSimple(const Vecteur& cond_ini, Vecteur deri_cond_ini, const Vecteur& angle, const double mv,
                const double h, const double r)
-               :Toupie(std::move(cond_ini), std::move(deri_cond_ini), 3), masse_volumique_(mv),
-            hauteur_(h), rayon_(r), m(1/3 * M_PI * mv * r * r * h),
-            moment_dinertie1((3*m)/20 *(r*r + 0.25 * h*h)),
-            moment_dinertie3((3*m)/10 * r*r), centre_de_masse(0.75 * h) { }
+            :Toupie(cond_ini, std::move(deri_cond_ini), angle, 1.0/3.0 * M_PI * mv * r * r * h, 3), masse_volumique_(mv),
+             hauteur_(h), rayon_(r),
+             moment_dinertie1((3.0*masse)/20.0 *(r*r + 0.25 * h*h)),
+             moment_dinertie3((3.0*masse)/10.0 * r*r), centre_de_masse(0.75 * h) { }
+    std::ostream& affiche(std::ostream& sortie);
+
 };
-#ifndef TOUPIE_CONESIMPLE_H
-#define TOUPIE_CONESIMPLE_H
+#endif /* ConeSimple_hpp */
 
 #endif //TOUPIE_CONESIMPLE_H
