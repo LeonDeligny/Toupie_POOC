@@ -1,20 +1,24 @@
-#pragma once
-#ifndef TOUPIE_TEXTVIEWER_HPP
-#define TOUPIE_TEXTVIEWER_HPP
+//
+//  TextViewer.hpp
+//  POO
+//
+//  Created by Léon Deligny on 26/03/2020.
+//  Copyright © 2020 Léon Deligny. All rights reserved.
+//
+
+#ifndef TextViewer_hpp
+#define TextViewer_hpp
+
+#include <stdio.h>
 #include "SupportADessin.hpp"
-
-class TextViewer : public SupportADessin{
-public:
-    TextViewer(std::ostream& flot)
-    :flot(flot) { }
-
-    ~TextViewer() override = default;
-
-    void dessine(Contenu const& a_dessiner) override;
-
+#include "Contenu.hpp"
+#include <iostream>
+class TextViewer : public SupportADessin {
+    TextViewer(std::ostream& flot) : flot(flot) {}
+     virtual ~TextViewer() {}
+     virtual void dessine(Contenu const& a_dessiner) override;
 private:
-    std::ostream& flot;
-
+     std::ostream& flot;
 };
 
-#endif //TOUPIE_TEXTVIEWER_HPP
+#endif /* TextViewer_hpp */

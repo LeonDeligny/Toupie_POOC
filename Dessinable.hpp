@@ -10,15 +10,24 @@
 #define Dessinable_hpp
 
 #include <stdio.h>
-#include "SupportADessin.hpp"
 #include <iostream>
-class Dessinable {
-protected:
-    SupportADessin* support;
-public:
-    virtual void dessine() = 0;
-    std::ostream& affiche(std::ostream& sortie);
-    Dessinable(SupportADessin* s1) : support(s1) {}
-};
+#include "SupportADessin.hpp"
 
+class Dessinable {
+public:
+ Dessinable(SupportADessin* support) : support(support) {}
+ virtual ~Dessinable() {}
+ virtual void dessine() = 0;
+
+protected:
+ /* Nous mettons un pointeur au lieu d'une référence *
+  * au cas où l'on voudrait changer de support (non  *
+  * implémenté ici), ou même copier un dessinable,   *
+  * échanger (swap) deux dessinables, etc.           *
+  * Il n'est pas nécessaire d'implémenter une copie  *
+  * profonde ici ; c'est bien une copie de surface   *
+  * dont nous avons besoin.                          */
+ SupportADessin* support;
+
+};
 #endif /* Dessinable_hpp */
