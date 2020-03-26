@@ -13,14 +13,15 @@
 #include "Vecteur.hpp"
 extern const Vecteur g;
 
-class Toupie{
+class Toupie {
 protected:
     Vecteur position_;
+    Vecteur angles;
     Vecteur vitesses_;
     unsigned int degre_de_liberte_;
     unsigned int masse;
 public:
-    Toupie(Vecteur cond_ini, Vecteur deri_cond_ini, unsigned int m, unsigned int degl=5):
+    Toupie(Vecteur cond_ini, Vecteur deri_cond_ini, Vecteur angle, unsigned int m, unsigned int degl=5):
     position_(std::move(cond_ini)), vitesses_(std::move(deri_cond_ini)),
     degre_de_liberte_(degl), masse(m) { }
 
