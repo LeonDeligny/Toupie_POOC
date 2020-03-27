@@ -1,23 +1,20 @@
-//
-//  Contenu.hpp
-//  POO
-//
-//  Created by Léon Deligny on 26/03/2020.
-//  Copyright © 2020 Léon Deligny. All rights reserved.
-//
+#pragma once
+#ifndef TOUPIE_CONTENU_HPP
+#define TOUPIE_CONTENU_HPP
 
-#ifndef Contenu_hpp
-#define Contenu_hpp
-
-#include <stdio.h>
-#include "SupportADessin.hpp"
 #include "Dessinable.hpp"
-class Contenu : public Dessinable {
-    public:
-      Contenu(SupportADessin* vue) : Dessinable(vue)
-      {}
-      virtual ~Contenu() {}
-      virtual void dessine() override { support->dessine(*this); }
+#include "SupportADessin.hpp"
+
+class Contenu : public Dessinable
+{
+public:
+    Contenu(SupportADessin* supp)
+            :Dessinable(supp) { }
+
+    virtual ~Contenu() = default;
+
+    void dessine() override {support->dessine(*this); }
 };
-     
-#endif /* Contenu_hpp */
+
+
+#endif //TOUPIE_CONTENU_HPP

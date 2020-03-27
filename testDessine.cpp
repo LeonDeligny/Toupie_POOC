@@ -1,11 +1,11 @@
 #include <iostream>
 #include <vector>
-#include "Vecteurh.h"
-#include "Matrice33h.h"
+#include "Vecteur.h"
+#include "Matrice33.h"
 #include "ConeSimple.h"
 #include "Integrateur.h"
 #include "IntegrateurEuler-Cromer.h"
-#include "Toupieh.h"
+#include "Toupie.h"
 #include "SupportADessin.hpp"
 #include "Systeme.hpp"
 #include "Dessinable.hpp"

@@ -9,12 +9,12 @@
 #ifndef Integrateur_hpp
 #define Integrateur_hpp
 
-#include <stdio.h>
-#include "Toupieh.h"
+#include <cstdio>
+#include "Toupie.h"
 
 class Integrateur{
 public:
-    void evolue(Toupie& spin, const double& dt);
+    virtual void evolue(Toupie& spin, const double& dt);
 };
 
 #endif /* Integrateur_hpp */

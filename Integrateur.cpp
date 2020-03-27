@@ -6,8 +6,8 @@
 //  Copyright © 2020 Léon Deligny. All rights reserved.
 //
 
-#include "Integrateur.hpp"
-#include "Toupie.hpp"
+#include "Integrateur.h"
+#include "Toupie.h"
 
 void Integrateur::evolue(Toupie& spin, const double& dt) {
     spin.set_position(spin.get_position() + dt * spin.get_vitesses_());

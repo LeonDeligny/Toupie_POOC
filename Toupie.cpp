@@ -1,12 +1,4 @@
-//
-//  Toupie.cpp
-//  POO
-//
-//  Created by Léon Deligny on 19/03/2020.
-//  Copyright © 2020 Léon Deligny. All rights reserved.
-//
-
-#include "Toupie.hpp"
+#include "Toupie.h"
 using namespace std;
 
 Vecteur Toupie::f(const Vecteur &P, const Vecteur &P_prime) {
@@ -16,10 +8,13 @@ Vecteur Toupie::f(const Vecteur &P, const Vecteur &P_prime) {
 }
 
 std::ostream &Toupie::affiche(std::ostream& sortie) const {
-    sortie << Toupie::get_position();
+    sortie << "parametres : " << angles << endl;
+    sortie << "derivee : " << vitesses_ << endl;
+    sortie << "origine : " << position_ << endl;
+
     return sortie;
 }
 
-std::ostream& operator<<(ostream& cout, const Toupie& spin){
-    return spin.affiche(cout);
+std::ostream& operator<<(ostream& exit, const Toupie& spin){
+    return spin.affiche(exit);
 }

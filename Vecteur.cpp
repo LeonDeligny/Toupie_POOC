@@ -1,4 +1,4 @@
-#include "Vecteur.hpp"
+#include "Vecteur.h"
 #include <cmath>
 #include <iomanip>
 using namespace std;
@@ -38,13 +38,15 @@ Vecteur& operator-(Vecteur& v_) {
 
 Vecteur& Vecteur::operator-=(Vecteur const &autre) {
     if (vecteur.size() != autre.vecteur.size() and !vecteur.empty()) {
-        throw "tableaux de tailles différentes, soustraction";
+        throw "tableaux de tailles différentes, soustraction"s;
     } else if (vecteur.empty() or autre.vecteur.empty()) {
         throw "tableau vide, soustraction"s;
     } else {
-        Vecteur autre1(autre);
-        return *this += -autre1;
+        for (size_t i(0); i < vecteur.size(); ++i) {
+            vecteur[i] -= autre.vecteur[i];
+        }
     }
+    return *this;
 }
 
 double Vecteur::operator*(Vecteur const &autre) const {
