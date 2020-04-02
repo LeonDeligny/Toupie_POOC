@@ -1,11 +1,3 @@
-//
-//  Integrateur.hpp
-//  POO
-//
-//  Created by Léon Deligny on 19/03/2020.
-//  Copyright © 2020 Léon Deligny. All rights reserved.
-//
-
 #ifndef Integrateur_hpp
 #define Integrateur_hpp
 

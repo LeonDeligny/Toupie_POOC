@@ -1,5 +1,6 @@
 #include "Toupie.h"
-using namespace std;
+using std::cout;
+using std::endl;
 
 Vecteur Toupie::f(const Vecteur &P, const Vecteur &P_prime) {
     Vecteur _P(P); //P-point-point
@@ -15,6 +16,6 @@ std::ostream &Toupie::affiche(std::ostream& sortie) const {
     return sortie;
 }
 
-std::ostream& operator<<(ostream& exit, const Toupie& spin){
+std::ostream& operator<<(std::ostream& exit, const Toupie& spin){
     return spin.affiche(exit);
 }

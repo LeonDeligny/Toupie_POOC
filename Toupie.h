@@ -8,6 +8,7 @@
 #include "SupportADessin.hpp"
 #include <memory>
 #include <string>
+#include <utility>
 #include <memory>
 
 extern const Vecteur g;
@@ -20,14 +21,14 @@ protected:
     double masse;
     unsigned int degre_de_liberte_;
 public:
-    Toupie(Vecteur cond_ini, const Vecteur& angle,  Vecteur deri_cond_ini, unsigned int m, SupportADessin* supp, unsigned int degl=5):
-            Dessinable(supp), position_(std::move(cond_ini)), vitesses_(std::move(deri_cond_ini)),
+    Toupie(Vecteur cond_ini, Vecteur  angle,  Vecteur deri_cond_ini, unsigned int m, SupportADessin* supp, unsigned int degl=5):
+            Dessinable(supp), position_(std::move(cond_ini)), angles(std::move(angle)), vitesses_(std::move(deri_cond_ini)),
             degre_de_liberte_(degl), masse(m) { }
 
-    Vecteur f(const Vecteur& P, const Vecteur& P_prime);
+    virtual Vecteur f(const Vecteur& P, const Vecteur& P_prime);
 
-    Vecteur get_position () const {return position_;};
-    void set_position(const Vecteur& pos_) {position_ = pos_; };
+    Vecteur get_angle () const {return angles;};
+    void set_angle(const Vecteur& pos_) {angles = pos_; };
     Vecteur get_vitesses_() const {return vitesses_;};
     void set_vitesses(const Vecteur& vit) {vitesses_ = vit;};
 

@@ -30,5 +30,9 @@ public:
     std::unique_ptr<ConeSimple> clone() const {return std::make_unique<ConeSimple>(*this);}
     std::unique_ptr<Toupie> copie() const override{return clone();}
 
+    Vecteur f(const Vecteur& P, const Vecteur& P_prime) override;
+
+
+
 };
 #endif /* ConeSimple_hpp */

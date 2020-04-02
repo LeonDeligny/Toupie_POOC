@@ -10,7 +10,7 @@
 #include "Toupie.h"
 
 void Integrateur::evolue(Toupie& spin, const double& dt) {
-    spin.set_position(spin.get_position() + dt * spin.get_vitesses_());
+    spin.set_angle(spin.get_angle() + dt * spin.get_vitesses_());
 
-    spin.set_vitesses(spin.get_vitesses_() + dt * spin.f(spin.get_position(), spin.get_vitesses_()));
+    spin.set_vitesses(spin.get_vitesses_() + dt * spin.f(spin.get_angle(), spin.get_vitesses_()));
 }

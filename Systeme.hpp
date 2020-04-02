@@ -7,14 +7,16 @@
 
 class Systeme : public Dessinable{
 private:
-    std::vector<std::unique_ptr<Toupie>> systeme;
+    std::vector<std::unique_ptr<Toupie>> ensemble;
     Integrateur* integrateur;
 public:
-    Systeme(SupportADessin* supp, std::vector<std::unique_ptr<Toupie>> systeme1, Integrateur* i1)
-    : Dessinable(supp), systeme(std::move(systeme1)), integrateur(i1) {}
+    Systeme(SupportADessin* supp, Integrateur* i1)
+    : Dessinable(supp), integrateur(i1) {}
+
     void ajoute(const Toupie& satourne) {
-        systeme.push_back(satourne.copie());
+        ensemble.push_back(satourne.copie());
     }
+
     void dessine() override { support->dessine(*this); }
 
     void evolue();
