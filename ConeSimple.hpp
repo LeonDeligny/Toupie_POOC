@@ -1,19 +1,11 @@
-//
-//  ConeSimple.hpp
-//  POO
-//
-//  Created by Léon Deligny on 19/03/2020.
-//  Copyright © 2020 Léon Deligny. All rights reserved.
-//
-
 #ifndef ConeSimple_hpp
 #define ConeSimple_hpp
-
 #include "Toupie.hpp"
-#include <utility>
+#include "Dessinable.hpp"
+#include "SupportADessin.hpp"
 #include <cmath>
-#include <stdio.h>
-class ConeSimple : public Toupie {
+#include <cstdio>
+class ConeSimple : public Toupie{
 private:
     const double masse_volumique_;
     const double hauteur_;
@@ -23,13 +15,19 @@ private:
     const double centre_de_masse;
 
 public:
-    ConeSimple(Vecteur cond_ini, Vecteur deri_cond_ini, Vecteur angle, const double mv,
-               const double h, const double r)
-               :Toupie(std::move(cond_ini), std::move(deri_cond_ini), std::move(angle), 1/3 * M_PI * mv * r * r * h, 3), masse_volumique_(mv),
-            hauteur_(h), rayon_(r),
-            moment_dinertie1((3*masse)/20 *(r*r + 0.25 * h*h)),
-            moment_dinertie3((3*masse)/10 * r*r), centre_de_masse(0.75 * h) { }
-    std::ostream& affiche(std::ostream& sortie);
+    ConeSimple(const Vecteur& parametres, const Vecteur& derivees, const double mv,
+               const double hauteur, const double rayon, SupportADessin* support)
+            :Toupie(parametres, derivees, 1.0/3.0 * M_PI * mv * rayon * rayon * hauteur, support, 3),
+            masse_volumique_(mv), hauteur_(hauteur), rayon_(rayon),
+             moment_dinertie1((3.0 * masse )/20.0 *(rayon*rayon + 0.25 * hauteur*hauteur)),
+             moment_dinertie3((3.0*masse)/10.0 * rayon*rayon), centre_de_masse(0.75 * hauteur) { }
 
+    void dessine() override { support->dessine(*this); }
+    std::ostream& affiche(std::ostream&) const override;
+
+    std::unique_ptr<ConeSimple> clone() const {return std::make_unique<ConeSimple>(*this);}
+    std::unique_ptr<Toupie> copie() const override{return clone();}
+
+    Vecteur f() override;
 };
 #endif /* ConeSimple_hpp */

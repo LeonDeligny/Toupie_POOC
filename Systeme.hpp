@@ -1,9 +1,17 @@
-#pragma once
+//
+//  Systeme.hpp
+//  POO
+//
+//  Created by Léon Deligny on 26/03/2020.
+//  Copyright © 2020 Léon Deligny. All rights reserved.
+//
+
 #ifndef Systeme_hpp
 #define Systeme_hpp
 
+
 #include <cstdio>
-#include "Integrateur.h"
+#include "Integrateur.hpp"
 
 class Systeme : public Dessinable{
 private:
@@ -23,6 +31,7 @@ public:
 
 };
 
-std::ostream& operator<<(std::ostream& sortie, const std::vector<std::unique_ptr<Toupie>>& systeme);
+
+
 
 #endif /* Systeme_hpp */

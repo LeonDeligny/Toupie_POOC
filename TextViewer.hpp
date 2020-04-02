@@ -1,6 +1,15 @@
-#pragma once
-#ifndef TOUPIE_TEXTVIEWER_HPP
-#define TOUPIE_TEXTVIEWER_HPP
+//
+//  TextViewer.hpp
+//  POO
+//
+//  Created by Léon Deligny on 26/03/2020.
+//  Copyright © 2020 Léon Deligny. All rights reserved.
+//
+
+#ifndef TextViewer_hpp
+#define TextViewer_hpp
+
+#include <stdio.h>
 #include "SupportADessin.hpp"
 #include <iostream>
 
@@ -26,5 +35,4 @@ private:
     std::ostream& flot;
 
 };
-
-#endif //TOUPIE_TEXTVIEWER_HPP
+#endif /* TextViewer_hpp */

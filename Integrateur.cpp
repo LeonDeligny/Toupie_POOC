@@ -1,16 +1,10 @@
-//
-//  Integrateur.cpp
-//  POO
-//
-//  Created by Léon Deligny on 19/03/2020.
-//  Copyright © 2020 Léon Deligny. All rights reserved.
-//
-
-#include "Integrateur.h"
-#include "Toupie.h"
-
+#include "Integrateur.hpp"
+#include "Toupie.hpp"
+using namespace std;
 void Integrateur::evolue(Toupie& spin, const double& dt) {
-    spin.set_angle(spin.get_angle() + dt * spin.get_vitesses_());
-
-    spin.set_vitesses(spin.get_vitesses_() + dt * spin.f(spin.get_angle(), spin.get_vitesses_()));
+    cout << spin.get_parametres() + dt * spin.get_derivees_();
+    spin.set_parametres(spin.get_parametres() + dt * spin.get_derivees_());
+    
+    cout << spin.get_derivees_() + dt * spin.f();
+    spin.set_derivees(spin.get_derivees_() + dt * spin.f());
 }

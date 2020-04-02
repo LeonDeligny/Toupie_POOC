@@ -1,4 +1,4 @@
-#include "Vecteur.h"
+#include "Vecteur.hpp"
 #include <cmath>
 #include <iomanip>
 using namespace std;
@@ -77,11 +77,11 @@ const Vecteur Vecteur::operator~() const {
 
 const Vecteur Vecteur::operator^(Vecteur const &autre) const {
     Vecteur v_;
-    if (autre.vecteur.size() == 3 and vecteur.size() == 3) {
-        v_.vecteur[0] = vecteur[1] * autre.vecteur[2] - vecteur[2] * autre.vecteur[1];
-        v_.vecteur[1] = vecteur[2] * autre.vecteur[0] - vecteur[0] * autre.vecteur[2];
-        v_.vecteur[2] = vecteur[0] * autre.vecteur[1] - vecteur[1] * autre.vecteur[0];
-    }
+    if (autre.get_vecteur().size() == 3 and get_vecteur().size() == 3) {
+        v_.set_coord(0, vecteur[1] * autre.vecteur[2] - vecteur[2] * autre.vecteur[1]);
+        v_.set_coord(1, vecteur[2] * autre.vecteur[0] - vecteur[0] * autre.vecteur[2]);
+        v_.set_coord(2,vecteur[0] * autre.vecteur[1] - vecteur[1] * autre.vecteur[0]) ;
+  }
     return v_;
 }
 

@@ -1,33 +1,34 @@
-#include "Vecteur.h"
-#include "Vecteurdim3h.h"
-#include "Matrice33.h"
-#include "Integrateur.h"
+#include <cmath>
+#include "Systeme.hpp"
+#include "ConeSimple.hpp"
+#include "IntegrateurEulerCromer.hpp"
+
 using namespace std;
 
 int main() {
 
-    try {
-        Vecteur vect1;
-        Vecteur vect2;
-        Vecteur vect3;
-        vect1.augmente(1.0);
-        vect1.augmente(2.0);
-        vect1.augmente(-0.1);
-        vect2.augmente(2.6);
-        vect2.augmente(2.5);
-        vect2.augmente(-4.1);
+    SupportADessin* support(nullptr);
 
-        Matrice33 test(1, 2, 3);
-        cout<<test;
-        Matrice33 id;
-        cout<<test - id;
+    Vecteur parametre({ 0.0, M_PI/6, 0.0});
+    Vecteur derivee({0.0, 0.0, 60.0});
 
-        
-    }
-    catch(string& erreur){
-        cout<<endl;
-        cerr<<"Erreur : "<<erreur<<" impossible."<<endl;
-    }
+    auto* integrateur(new Integrateur);
+
+    ConeSimple test1(parametre, derivee, 0.1, 1.5, 0.5, support);
+
+    Vecteur parametre1({0.0, M_PI/4, 0.0});
+    Vecteur derivee1({0.0, 0.0, 40.0});
+
+    ConeSimple test2(parametre1, derivee1, 0.1, 1.5, 0.5, support);
+
+    vector<unique_ptr<Toupie>> tableau;
+
+    Systeme systeme(support, integrateur);
+
+    systeme.ajoute(test1);
+    systeme.ajoute(test2);
+
+    systeme.evolue();
+
     return 0;
 }
-

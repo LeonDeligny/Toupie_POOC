@@ -1,17 +1,15 @@
-#include "Toupie.h"
+#include "Toupie.hpp"
 using std::cout;
 using std::endl;
 
-Vecteur Toupie::f(const Vecteur &P, const Vecteur &P_prime) {
-    Vecteur _P(P); //P-point-point
-
-    return _P; //Le corps viendra plus tard
+Vecteur Toupie::f() {
+    Vecteur v({0});
+    return v;
 }
 
 std::ostream &Toupie::affiche(std::ostream& sortie) const {
-    sortie << "angle : " << angles << endl;
-    sortie << "derivee : " << vitesses_ << endl;
-    sortie << "origine : " << position_ << endl;
+    sortie << "angle : " << parametres << endl;
+    sortie << "derivee : " << derivees << endl;
 
     return sortie;
 }
