@@ -8,7 +8,7 @@ Vecteur Toupie::f(const Vecteur &P, const Vecteur &P_prime) {
 }
 
 std::ostream &Toupie::affiche(std::ostream& sortie) const {
-    sortie << "parametres : " << angles << endl;
+    sortie << "angle : " << angles << endl;
     sortie << "derivee : " << vitesses_ << endl;
     sortie << "origine : " << position_ << endl;
 

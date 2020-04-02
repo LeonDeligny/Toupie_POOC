@@ -3,14 +3,7 @@
 #define Systeme_hpp
 
 #include <cstdio>
-#include <memory>
-#include <iostream>
-#include "Toupie.h"
-#include "Dessinable.hpp"
 #include "Integrateur.h"
-#include "SupportADessin.hpp"
-
-std::ostream& operator<<(std::ostream& cout, const std::vector<std::unique_ptr<Toupie>>& systeme);
 
 class Systeme : public Dessinable{
 private:
@@ -19,8 +12,8 @@ private:
 public:
     Systeme(SupportADessin* supp, std::vector<std::unique_ptr<Toupie>> systeme1, Integrateur* i1)
     : Dessinable(supp), systeme(std::move(systeme1)), integrateur(i1) {}
-    void ajoute(std::unique_ptr<Toupie> t) {
-        systeme.push_back(std::move(t));
+    void ajoute(const Toupie& satourne) {
+        systeme.push_back(satourne.copie());
     }
     void dessine() override { support->dessine(*this); }
 
@@ -28,5 +21,6 @@ public:
 
 };
 
+std::ostream& operator<<(std::ostream& sortie, const std::vector<std::unique_ptr<Toupie>>& systeme);
 
 #endif /* Systeme_hpp */

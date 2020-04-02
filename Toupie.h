@@ -6,7 +6,9 @@
 #include "Vecteur.h"
 #include "Dessinable.hpp"
 #include "SupportADessin.hpp"
+#include <memory>
 #include <string>
+#include <memory>
 
 extern const Vecteur g;
 
@@ -28,6 +30,9 @@ public:
     void set_position(const Vecteur& pos_) {position_ = pos_; };
     Vecteur get_vitesses_() const {return vitesses_;};
     void set_vitesses(const Vecteur& vit) {vitesses_ = vit;};
+
+    std::unique_ptr<Toupie> clone() const {return std::make_unique<Toupie>(*this);}
+    virtual std::unique_ptr<Toupie> copie() const {return clone();}
 
     virtual std::ostream& affiche(std::ostream&) const ;
     void dessine() override { support->dessine(*this); }

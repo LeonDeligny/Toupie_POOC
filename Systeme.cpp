@@ -1,9 +1,7 @@
 #include "Systeme.hpp"
-#include <memory>
-#include <vector>
 #include "Toupie.h"
-#include <iostream>
-using namespace std;
+using std::cout;
+using std::endl;
 std::ostream& operator<<(std::ostream& sortie, const std::vector<std::unique_ptr<Toupie>>& systeme) {
     for( auto const& element : systeme ) {
         element->affiche(sortie);
@@ -15,7 +13,7 @@ void Systeme::evolue() {
     cout<<"Le systeme est constitué des"<< systeme.size() <<"toupies suivantes (indépendantes)  :" << endl;
     unsigned int taille(1);
     for(auto const& spin : systeme){
-        cout<<"=== Toupie "<<taille<<" : "<<endl;
+        cout <<"=== Toupie "<<taille<<" : "<< endl;
         cout << *spin;
         taille += 1;
     }

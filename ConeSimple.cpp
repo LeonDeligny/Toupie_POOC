@@ -1,7 +1,6 @@
 #include "ConeSimple.h"
-#include <iostream>
 using namespace std;
-std::ostream& ConeSimple::affiche(std::ostream& sortie) {
+std::ostream& ConeSimple::affiche(std::ostream& sortie) const{
     sortie << "Cone Simple " << endl;
     Toupie::affiche(sortie);
      sortie << "masse volumique (kg. m-3) : " << masse_volumique_ << endl
