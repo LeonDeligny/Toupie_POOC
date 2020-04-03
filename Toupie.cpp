@@ -3,7 +3,7 @@ using std::cout;
 using std::endl;
 
 Vecteur Toupie::f() {
-    Vecteur v({0});
+    Vecteur v({1, 1, 1});
     return v;
 }
 

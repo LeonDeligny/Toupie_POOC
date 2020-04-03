@@ -27,7 +27,7 @@ protected:
     double masse;
     unsigned int degre_de_liberte_;
 public:
-    Toupie(Vecteur cond_ini, Vecteur deri_cond_ini, unsigned int m, SupportADessin* supp, unsigned int degl=5):
+    Toupie(Vecteur cond_ini, Vecteur deri_cond_ini, double m, SupportADessin* supp, unsigned int degl=5):
             Dessinable(supp), parametres(std::move(cond_ini)), derivees(std::move(deri_cond_ini)),
             degre_de_liberte_(degl), masse(m) { }
     virtual ~Toupie() {};

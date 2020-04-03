@@ -21,7 +21,7 @@ void Systeme::evolue() {
 
     cout<<endl;
     cout << "Le systeme evolue et se dessine a chaque pas (dt=0.01) : " << endl;
-    float t(0.0);
+    float t(0.01);
     do {
         cout << endl << "t = " << t << endl;
         for (auto const &turn : ensemble) {

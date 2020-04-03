@@ -1,7 +1,9 @@
 #include "ConeSimple.hpp"
 #include <cmath>
 #include "matrice33.hpp"
+using namespace std;
 using std::endl;
+using std::cout;
 
 std::ostream& ConeSimple::affiche(std::ostream& sortie) const{
     sortie << "Cone Simple " << endl;
@@ -27,9 +29,9 @@ Vecteur ConeSimple::f() {
     Vecteur w({theta_point, phi_point * sin(theta), psi_point*cos(theta+ phi_point)});
     Vecteur w_point;
     Vecteur biz({0, 0, phi_point});
-    w_point = IA.inv() * ( MA - (w - biz) ^ ( IA * w));
+    w_point = IA.inv() * ( MA - (w - biz)^( IA * w));
     
-    if ( abs(theta) <= 1e-2) {
+    if ( abs(theta) <= 0.001) {
         double psi_derivee_seconde = 0;
         double phi_derivee_seconde = w_point.get_vecteur()[2];
     Vecteur v({psi_derivee_seconde, theta_derivee_seconde, phi_derivee_seconde});
@@ -39,10 +41,11 @@ Vecteur ConeSimple::f() {
         //double phi_derivee_seconde = (w_point.get_vecteur()[2] + (psi_point * theta_point - w_point.get_vecteur()[2]* cos(theta)) / sin(theta));
 
         double psi_derivee_seconde = ((theta_point / (IA1 * sin(theta))) * ( ( moment_dinertie3 - 2 * IA1) * psi_point * cos(theta) + moment_dinertie3 * phi_point));
-        double phi_derivee_seconde = ( (theta_point / (IA1 * sin(theta))) * ( ( IA1 - ( moment_dinertie3 - IA1) * cos(theta) * cos(theta) ) ) * psi_point - moment_dinertie3 * phi_point * cos(theta));
-        
+        double phi_derivee_seconde = (((theta_point / (IA1 * sin(theta))) * ( ((( ( IA1 - ( moment_dinertie3 - IA1) * cos(theta) * cos(theta) ) ) * psi_point) - moment_dinertie3 * phi_point * cos(theta)))));
         
         Vecteur v({psi_derivee_seconde , theta_derivee_seconde , phi_derivee_seconde});
+        
+
         return v;
 
     }
