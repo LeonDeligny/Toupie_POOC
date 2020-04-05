@@ -3,7 +3,7 @@
 #include "Contenu.hpp"
 
 void TextViewer::dessine(Toupie const &a_dessiner) {
-    flot << "paramètres : " << a_dessiner.get.parametres();
+    flot << "paramètres : " << a_dessiner.get.angle();
 }
 
 void TextViewer::dessine(Systeme const &a_dessiner) {
@@ -15,7 +15,7 @@ void TextViewer::dessine(Systeme const &a_dessiner) {
 }
 
 void TextViewer::dessine(ConeSimple const &a_dessiner) {
-    flot << "parametres : " << a_dessiner.get_parametres();
-         <<"; derivees : " << a_dessiner.get_derivees()<<std::endl;
+    flot << "parametres : " << a_dessiner.get_angle();
+         <<"; derivees : " << a_dessiner.get_vitesse()<<std::endl;
 }
 
