@@ -3,7 +3,7 @@
 #include "Contenu.hpp"
 
 void TextViewer::dessine(Toupie const &a_dessiner) {
-    flot << "paramètres : " << a_dessiner.get.angle();
+    flot << "paramètres : " << a_dessiner.get_derivees_();
 }
 
 void TextViewer::dessine(Systeme const &a_dessiner) {
