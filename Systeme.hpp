@@ -1,17 +1,9 @@
-//
-//  Systeme.hpp
-//  POO
-//
-//  Created by Léon Deligny on 26/03/2020.
-//  Copyright © 2020 Léon Deligny. All rights reserved.
-//
-
+#pragma once
 #ifndef Systeme_hpp
 #define Systeme_hpp
 
-
 #include <cstdio>
-#include "Integrateur.hpp"
+#include "Integrateur.h"
 
 class Systeme : public Dessinable{
 private:
@@ -25,13 +17,16 @@ public:
         ensemble.push_back(satourne.copie());
     }
 
+    const std::unique_ptr<Toupie>& get_toupie(size_t i) const{return ensemble[i]; }
+    size_t get_taille() const {return ensemble.size();}
+
     void dessine() override { support->dessine(*this); }
+    const std::unique_ptr<Toupie>& get_spinning_top(size_t k) const {return ensemble[k];}
 
     void evolue();
 
 };
 
-
-
+std::ostream& operator<<(std::ostream& sortie, const std::vector<std::unique_ptr<Toupie>>& systeme);
 
 #endif /* Systeme_hpp */

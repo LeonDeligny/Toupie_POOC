@@ -1,7 +1,6 @@
-#ifndef TextViewer_hpp
-#define TextViewer_hpp
-
-#include <stdio.h>
+#pragma once
+#ifndef TOUPIE_TEXTVIEWER_HPP
+#define TOUPIE_TEXTVIEWER_HPP
 #include "SupportADessin.hpp"
 #include <iostream>
 
@@ -16,7 +15,7 @@ public:
     TextViewer(std::ostream& flot)
     :flot(flot) { }
 
-   virtual  ~TextViewer() { }
+   virtual  ~TextViewer() = default;
 
     void dessine(Contenu const& a_dessiner) override;
     void dessine(Toupie const& a_dessiner) override;
@@ -27,4 +26,5 @@ private:
     std::ostream& flot;
 
 };
-#endif /* TextViewer_hpp */
+
+#endif //TOUPIE_TEXTVIEWER_HPP

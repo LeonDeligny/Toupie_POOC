@@ -1,5 +1,5 @@
 #include "Systeme.hpp"
-#include "Toupie.hpp"
+#include "Toupie.h"
 using std::cout;
 using std::endl;
 std::ostream& operator<<(std::ostream& sortie, const std::vector<std::unique_ptr<Toupie>>& systeme) {
@@ -26,7 +26,7 @@ void Systeme::evolue() {
         cout << endl << "t = " << t << endl;
         for (auto const &turn : ensemble) {
             cout << endl << "dessin de la toupie " << taille << endl;
-            
+
             integrateur->evolue(*turn, 0.01); //l'affichage se fait dans evolue(turn, 0.01)
             taille += 1;
         }
