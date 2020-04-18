@@ -15,13 +15,14 @@ public:
 
     void ajoute(const Toupie& satourne) {
         ensemble.push_back(satourne.copie());
+        //La méthode copie() retourne un unique_ptr entre autre pour cette méthode.
     }
 
-    const std::unique_ptr<Toupie>& get_toupie(size_t i) const{return ensemble[i]; }
+    const std::unique_ptr<Toupie>& get_spinning_top(size_t k) const {return ensemble[k];}
     size_t get_taille() const {return ensemble.size();}
+    //Ces deux méthodes sont nécessaires au fonctionnement de textviewer.
 
     void dessine() override { support->dessine(*this); }
-    const std::unique_ptr<Toupie>& get_spinning_top(size_t k) const {return ensemble[k];}
 
     void evolue();
 
