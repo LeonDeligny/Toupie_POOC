@@ -9,6 +9,9 @@
     flot << "un cube" << std::endl;
 }*/
 
+
+//Textviewer permet simplement d'afficher les toupies, à part ou dans un système, exactement
+//comme dans les classes respectives.
 void TextViewer::dessine(Toupie const &toupie) {
     flot << "paramètres : "<< toupie.get_parametres();
 }
