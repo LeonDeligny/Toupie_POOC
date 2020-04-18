@@ -18,9 +18,12 @@ void Systeme::evolue() {
         taille += 1;
     }
     taille=1;
+    /*Affiche le nombre de toupies et leurs caractéristiques.*/
 
     cout<<endl;
     cout << "Le systeme evolue et se dessine a chaque pas (dt=0.01) : " << endl;
+    //Appel la méthode évolue et appel la méthode évolue() de l'intégrateur tour à tour.
+    //Le choix de l'arrêter après 10 itérations est arbitaire.
     float t(0.01);
     do {
         cout << endl << "t = " << t << endl;
