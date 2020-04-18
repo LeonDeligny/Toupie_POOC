@@ -1,11 +1,11 @@
 #include "ConeSimple.hpp"
 #include <cmath>
 #include "matrice33.hpp"
-using namespace std;
 using std::endl;
 using std::cout;
 
 std::ostream& ConeSimple::affiche(std::ostream& sortie) const{
+    /*Cette fonction sert à surcharger l'opérateur d'affichage << comme demandé*/
     sortie << "Cone Simple " << endl;
     Toupie::affiche(sortie);
      sortie << "masse volumique (kg. m-3) : " << masse_volumique_ << endl
@@ -15,6 +15,9 @@ std::ostream& ConeSimple::affiche(std::ostream& sortie) const{
 }
 
 Vecteur ConeSimple::f() {
+    /*Cette méthode sert à calculer les dérivées secondes des angles de la toupie, qui sont des attributs de cette dernière.
+    Nous avons choisi de créer des variables locales afin d'augmenter la lisibilité du code, et avons suivi les formules données
+    par le complément mathématique.*/
     double IA1 = (masse*((3.0/20.0)*rayon_*rayon_+(3.0/5.0)*hauteur_*hauteur_));
     double theta = parametres.get_vecteur()[1];
     double psi_point = derivees.get_vecteur()[0];
