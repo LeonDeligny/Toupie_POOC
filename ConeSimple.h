@@ -25,14 +25,14 @@ public:
              moment_dinertie3((3.0*masse)/10.0 * rayon*rayon), centre_de_masse(0.75 * hauteur) { }
 
     void dessine() override { support->dessine(*this); }
+    //Il s'agit du corps nécessaire au fonctionnement de la fonction dessine.
     std::ostream& affiche(std::ostream&) const override;
 
     std::unique_ptr<ConeSimple> clone() const {return std::make_unique<ConeSimple>(*this);}
     std::unique_ptr<Toupie> copie() const override{return clone();}
+    //Ces deux méthodes permettent de créer un cone sans la syntaxe new
 
     Vecteur f(const Vecteur& P, const Vecteur& P_prime) override;
-
-
 
 };
 #endif /* ConeSimple_hpp */
