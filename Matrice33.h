@@ -1,3 +1,5 @@
+Il y a une version plus récente tout en bas dans github
+
 #pragma once
 #ifndef TOUPIE_MATRICE33H_H
 #define TOUPIE_MATRICE33H_H
