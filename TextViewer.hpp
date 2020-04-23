@@ -9,6 +9,7 @@ class Toupie;
 class Systeme;
 class ConeSimple;
 class Dessinable;
+//Les include ne permettent pas le fonctionnement de la classe
 
 class TextViewer : public SupportADessin{
 public:
@@ -17,7 +18,6 @@ public:
 
    virtual  ~TextViewer() = default;
 
-    void dessine(Contenu const& a_dessiner) override;
     void dessine(Toupie const& a_dessiner) override;
     void dessine(Systeme const& a_dessiner) override;
     void dessine(ConeSimple const& a_dessiner) override;
