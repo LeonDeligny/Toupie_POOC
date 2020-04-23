@@ -1,11 +1,3 @@
-//
-//  matrice33.hpp
-//  POO
-//
-//  Created by Léon Deligny on 16/03/2020.
-//  Copyright © 2020 Léon Deligny. All rights reserved.
-//
-
 #ifndef matrice33_hpp
 #define matrice33_hpp
 
@@ -13,16 +5,17 @@
 #include <array>
 #include "Vecteur.hpp"
 
-typedef std::array<double, 3> ligne3;
+typedef std::array<double, 3> ligne3; //Pour augmenter la lisibilté du code
 
 class Matrice33 {
 private:
     std::vector<ligne3> matrice;
 public:
     explicit Matrice33(std::vector<ligne3> R) : matrice(std::move(R)) { }
-    Matrice33(double a, double b, double c, double d, double e, double f, double g, double h, double i);
+    Matrice33(double a, double b, double c, double d, double e, double f, double g, double h, double i); //avec 9 doubles
     Matrice33(); //matrice identitée
     Matrice33(double a, double e, double i):Matrice33(a, 0, 0, 0, e, 0, 0, 0, i) { } //matrice diagonale;
+    //On a mis autant de constructeur pour faciliter la création de matrices : à partir de vectors ou de double.
     Matrice33 transp();
     double det() const;
     Matrice33 inv() const;
