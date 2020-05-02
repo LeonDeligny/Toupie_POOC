@@ -25,14 +25,16 @@ protected:
     Vecteur parametres;
     Vecteur derivees;
     double masse;
+    const double hauteur_;
     unsigned int degre_de_liberte_;
 public:
-    Toupie(Vecteur cond_ini, Vecteur deri_cond_ini, double m, SupportADessin* supp, unsigned int degl=5):
+    Toupie(Vecteur cond_ini, Vecteur deri_cond_ini, double m, double hauteur_, SupportADessin* supp, unsigned int degl=5):
             Dessinable(supp), parametres(std::move(cond_ini)), derivees(std::move(deri_cond_ini)),
-            degre_de_liberte_(degl), masse(m) { }
+            degre_de_liberte_(degl), masse(m), hauteur_(hauteur_) { }
     virtual ~Toupie() {};
     virtual Vecteur f();
 
+    double get_hauteur() const { return hauteur_;};
     Vecteur get_parametres () const {
         return parametres;
     };

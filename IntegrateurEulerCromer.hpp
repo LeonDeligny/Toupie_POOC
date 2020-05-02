@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include "Integrateur.hpp"
 
-class Integrateur_Euler_Cromer : public Integrateur{
+class Integrateur_Euler_Cromer : public Integrateur {
 public:
     void evolue(Toupie &spin, const double& dt) override;
 };

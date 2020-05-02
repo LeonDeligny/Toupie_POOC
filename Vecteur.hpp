@@ -1,3 +1,11 @@
+//
+//  Vecteur.hpp
+//  POO
+//
+//  Created by Léon Deligny on 27/02/2020.
+//  Copyright © 2020 Léon Deligny. All rights reserved.
+//
+
 #ifndef Vecteur_hpp
 #define Vecteur_hpp
 

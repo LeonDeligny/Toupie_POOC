@@ -1,13 +1,12 @@
 #include <cmath>
-#include "memoire.hpp"
+#include "Systeme.hpp"
 #include "ConeSimple.hpp"
 #include "IntegrateurEulerCromer.hpp"
-#include "matrice33.hpp"
-
 
 using namespace std;
 
 int main() {
+
     SupportADessin* support(nullptr);
 
     Vecteur parametre({ 0.0, M_PI/6, 0.0});
@@ -25,7 +24,7 @@ int main() {
 
     vector<unique_ptr<Toupie>> tableau;
 
-    Memoire systeme(support, integrateur);
+    Systeme systeme(support, integrateur);
 
     systeme.ajoute(test1);
     systeme.ajoute(test2);

@@ -1,17 +1,23 @@
-#pragma once
+//
+//  Dessinable.hpp
+//  POO
+//
+//  Created by Léon Deligny on 26/03/2020.
+//  Copyright © 2020 Léon Deligny. All rights reserved.
+//
+
 #ifndef Dessinable_hpp
 #define Dessinable_hpp
 
-class SupportADessin; 
-//Cette portion de code est nécessaire pour les attributs de dessinable, et pour éviter
-//les include qui ne fonctionnaient pas
+
+class SupportADessin;
 
 class Dessinable {
 protected:
-    SupportADessin* support; //Un pointeur sur un support à dessin, comme demandé
+    SupportADessin* support;
 public:
-    virtual void dessine() = 0; //La méthode est redéfinie dans les classes qui héritent de dessinable : toupie, conesimple, etc
-    virtual ~Dessinable() = default; //Assure le polymorphisme dans les sous-classes
+    virtual void dessine() = 0;
+    virtual ~Dessinable() = default;
     Dessinable(SupportADessin* support)
     : support(support) { }
 };

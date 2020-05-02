@@ -1,5 +1,3 @@
-Le code commenté c'est l'autre fichier
-
 #include "Vecteur.hpp"
 #include "matrice33.hpp"
 #include <iomanip>
@@ -11,7 +9,6 @@ Matrice33 Matrice33::transp(){
     Matrice33 transpo(matrice[0][0], matrice[1][0], matrice[2][0],
                       matrice[0][1], matrice[1][1], matrice[2][1],
                       matrice[0][2], matrice[1][2], matrice[2][2]);
-
     return transpo;
 }
 
@@ -85,19 +82,6 @@ Matrice33 &Matrice33::operator-=(const Matrice33 &sub) {
     return *this; //copie inutile
 }
 
-Matrice33& Matrice33::operator*=(const Matrice33 & prod) {
-    for (auto & i : matrice) {
-        for (size_t j(0); j < i.size(); ++j) {
-            for (size_t k(0); k <=j; ++k) {
-                double a = i[j];
-                i[j]=0;
-                i[j] = a + i[k] * prod.matrice[k][j];
-            }
-        }
-    }
-    return *this;
-}
-
 Matrice33 &Matrice33::operator*=(const double &d) {
     for(auto & i : matrice){
         for(double & j : i){
@@ -109,7 +93,8 @@ Matrice33 &Matrice33::operator*=(const double &d) {
 
 const Vecteur Matrice33::operator*(const Vecteur &droit) {
     if(droit.get_vecteur().size() != matrice[0].size()){
-        throw"multiplication matrice-vecteur"s;
+        std::cout<<"multiplication matrice-vecteur impossible"<<std::endl;
+        return droit;
     }
     Vecteur v_;
     for(size_t i(0); i<matrice.size(); ++i){
@@ -143,8 +128,17 @@ const Matrice33 operator-(Matrice33 gauche, const Matrice33 &droite) {
 }
 
 const Matrice33 operator*(Matrice33 gauche, const Matrice33 &droite) {
-    return gauche*=droite;
-}
+
+    Matrice33 produit(0,0,0);
+        for (size_t i(0); i<3; ++i) {
+            for (size_t j(0); j < 3; ++j) {
+                for (size_t k(0); k <3; ++k) {
+                    produit.set_valeur(i, j,(produit.get_valeur(i,j)+gauche.get_valeur(i,k) * gauche.get_valeur(k,j)));
+                }
+            }
+        }
+        return produit;
+    }
 
 const Matrice33 operator*(double d, const Matrice33 &droite) {
     return Matrice33 (droite)*=d;
