@@ -21,29 +21,29 @@
    git clone https://github.com/LeonDeligny/Toupie_POOC.git
    cd Toupie_POOC
 
-2.	Compile the project:
+2. Compile the project:
 	•	With Qt Creator: Open the .pro file and build the project.
 	•	With command line (if available):
     qmake
     make
 
-3.	Run the executable:
+3. Run the executable:
   ./toupie_pooc
    
 ## Usage
-1.	Launch the application to view a selection of predefined tops.
-2.	Use the GUI to interact with different types of tops, adjust parameters like mass, radius, and initial angular velocity.
-3.	Observe the effects of changes in real-time as the simulation updates.
+1. Launch the application to view a selection of predefined tops.
+2. Use the GUI to interact with different types of tops, adjust parameters like mass, radius, and initial angular velocity.
+3. Observe the effects of changes in real-time as the simulation updates.
 
 ## Project Structure
-•	src/: Source files for the simulation, including classes for different types of tops.
-•	include/: Header files defining classes and methods.
-•	lib/: Libraries for GUI and graphical rendering.
+- **src/** : Source files for the simulation, including classes for different types of tops.
+- **include/** : Header files defining classes and methods.
+- **lib/** : Libraries for GUI and graphical rendering.
 
-Key Concepts
-	•	Euler-Cromer Method: Used for numerical stability in the simulation of rotational dynamics.
-	•	Object-Oriented Design: Separates top types as distinct classes, each encapsulating unique behaviors and properties.
+## Key Concepts
+- **Euler-Cromer Method** : Used for numerical stability in the simulation of rotational dynamics.
+- **Object-Oriented Design** : Separates top types as distinct classes, each encapsulating unique behaviors and properties.
 
-Future Improvements
-	•	Add support for additional numerical methods for increased simulation accuracy.
-	•	Expand GUI features for more detailed customization and control.
+## Future Improvements
+1. Add support for additional numerical methods for increased simulation accuracy.
+2. Expand GUI features for more detailed customization and control.
